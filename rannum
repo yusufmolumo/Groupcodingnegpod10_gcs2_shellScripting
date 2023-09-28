@@ -1,12 +1,17 @@
 #!/bin/bash
-first_random=$((RANDOM % 32768))
-second_random=$((RANDOM % 32768))
-first_sqrt=$(echo "scale=0; sqrt($first_random)" | bc)
-second_sqrt=$(echo "scale=0; sqrt($second_random)" | bc)
+generate_random() {
+  min=$1
+  max=$2
+  range=$(($max - $min + 1))
+  echo $(($RANDOM % $range + $min))
+}
+first_random=$(generate_random 1 32768)
+second_random=$(generate_random 1 32768)
+first_sqrt=$(echo "sqrt($first_random)" | awk '{printf "%.0f", $1}')
+second_sqrt=$(echo "sqrt($second_random)" | awk '{printf "%.0f", $1}')
 echo "The first random number generated is $first_random"
 echo "The square root is $first_sqrt"
 echo "The second random number generated is $second_random"
 echo "The square root is $second_sqrt"
 sum_of_sqrt=$((first_sqrt + second_sqrt))
 echo "The sum of their square roots is $sum_of_sqrt"
-
