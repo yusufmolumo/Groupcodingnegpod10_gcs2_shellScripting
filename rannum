@@ -1,20 +1,11 @@
 #!/bin/bash
-
-# Generate two random numbers
 num1=$RANDOM
 num2=$RANDOM
-
-# Calculate the square roots
 sqrt1=$(echo "sqrt($num1)" | bc -l)
 sqrt2=$(echo "sqrt($num2)" | bc -l)
-
-# Calculate the sum of the square roots
 sum_sqrt=$(echo "$sqrt1 + $sqrt2" | bc -l)
-
-# Print the results
 printf "The first random number generated is %d\n" $num1
 printf "The square root is %.0f\n" $sqrt1
 printf "The second random number generated is %d\n" $num2
 printf "The square root is %.0f\n" $sqrt2
 printf "The sum of their square roots is %.0f\n" $sum_sqrt
-
