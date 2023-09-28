@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Check if the folder_names.txt file exists
+if [ -f folder_names.txt ]; then
+  # Read each line of the file and create a folder
+  while read -r folder_name; do
+    mkdir "$folder_name"
+    echo "Created folder: $folder_name"
+  done < folder_names.txt
+else
+  echo "File 'folder_names.txt' not found."
+fi
