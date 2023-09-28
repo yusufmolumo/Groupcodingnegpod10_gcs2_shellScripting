@@ -1,12 +1,22 @@
 #!/bin/bash
 
-# Check if the folder_names.txt file exists
-if [ -f folder_names.txt ]; then
-  # Read each line of the file and create a folder
-  while read -r folder_name; do
-    mkdir "$folder_name"
-    echo "Created folder: $folder_name"
-  done < folder_names.txt
-else
-  echo "File 'folder_names.txt' not found."
+# Define the text file containing folder names
+input_file="folder_names.txt"
+
+# Check if the file exists
+if [ ! -f "$input_file" ]; then
+    echo "Error: The input file '$input_file' does not exist."
+    exit 1
 fi
+
+# Read each line from the file and create a folder
+while IFS= read -r folder_name; do
+    # Check if the folder already exists
+    if [ -d "$folder_name" ]; then
+        echo "Folder '$folder_name' already exists."
+    else
+        # Create the folder
+        mkdir "$folder_name"
+        echo "Created folder '$folder_name'."
+    fi
+done < "$input_file"
