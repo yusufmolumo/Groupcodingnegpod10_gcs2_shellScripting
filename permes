@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Define the message template file
+message_template_file="message_template.txt"
+
+# Loop through each name in the names.txt file
+while IFS= read -r name; do
+    # Define the output filename based on the name
+    output_file="$name.txt"
+    
+    # Use sed to replace "Recipeints_Name" with the actual name
+    sed "s/Recipeints_Name/$name/g" "$message_template_file" > "$output_file"
+    
+    echo "Generated message for $name in $output_file"
+done < "names.txt"
